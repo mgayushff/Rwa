@@ -1,165 +1,130 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>StudyStark Flow — Neon Portals</title>
+<body>
   <style>
-    /* Background Gradient */
-    body {
-      margin: 0;
-      height: 100vh;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      background: radial-gradient(circle at top left, #0f2027, #203a43, #2c5364);
-      font-family: 'Poppins', sans-serif;
-      color: white;
-      overflow: hidden;
+    *{
+      margin:0;
+      padding:0;
+      box-sizing:border-box;
+      font-family:Poppins,sans-serif;
     }
 
-    /* Floating neon animation */
-    .glow-bg {
-      position: absolute;
-      width: 100%;
-      height: 100%;
-      top: 0;
-      left: 0;
-      background: radial-gradient(circle at 20% 30%, rgba(0, 255, 255, 0.3), transparent 60%),
-                  radial-gradient(circle at 80% 70%, rgba(255, 0, 255, 0.25), transparent 60%);
-      animation: moveGlow 8s infinite alternate ease-in-out;
-      filter: blur(80px);
-      z-index: 0;
+    body{
+      height:100vh;
+      display:flex;
+      justify-content:center;
+      align-items:center;
+      background:linear-gradient(135deg,#0f172a,#111827,#1e293b);
+      overflow:hidden;
+      color:#fff;
     }
 
-    @keyframes moveGlow {
-      0% { transform: translate(0, 0); }
-      100% { transform: translate(20px, -20px); }
+    .bg::before,
+    .bg::after{
+      content:"";
+      position:absolute;
+      width:320px;
+      height:320px;
+      border-radius:50%;
+      filter:blur(90px);
+      z-index:-1;
     }
 
-    .container {
-      z-index: 2;
-      text-align: center;
-      background: rgba(0, 0, 0, 0.45);
-      backdrop-filter: blur(10px);
-      padding: 40px 30px;
-      border-radius: 20px;
-      box-shadow: 0 0 25px rgba(0, 255, 255, 0.25);
-      border: 1px solid rgba(255, 255, 255, 0.1);
+    .bg::before{
+      background:#229ED9;
+      top:-80px;
+      left:-80px;
     }
 
-    h2 {
-      font-size: 26px;
-      margin-bottom: 30px;
-      text-shadow: 0 0 10px cyan, 0 0 20px cyan;
+    .bg::after{
+      background:#7c3aed;
+      bottom:-80px;
+      right:-80px;
     }
 
-    /* Button Grid */
-    .button-grid {
-      display: grid;
-      grid-template-columns: 1fr;
-      gap: 15px;
+    .card{
+      width:92%;
+      max-width:420px;
+      text-align:center;
+      padding:40px 28px;
+      border-radius:24px;
+      background:rgba(255,255,255,.08);
+      backdrop-filter:blur(18px);
+      border:1px solid rgba(255,255,255,.12);
+      box-shadow:0 20px 60px rgba(0,0,0,.45);
     }
 
-    /* Neon Button Styling */
-    .neon-btn {
-      position: relative;
-      display: inline-block;
-      padding: 14px 22px;
-      font-size: 16px;
-      color: white;
-      font-weight: 600;
-      letter-spacing: 0.5px;
-      background: transparent;
-      border: 2px solid;
-      border-image: linear-gradient(90deg, cyan, magenta) 1;
-      border-radius: 10px;
-      cursor: pointer;
-      overflow: hidden;
-      transition: all 0.3s ease;
-      text-shadow: 0 0 5px cyan;
-      box-shadow: 0 0 15px rgba(0,255,255,0.4);
+    .logo{
+      width:90px;
+      height:90px;
+      margin:auto;
+      border-radius:50%;
+      background:#229ED9;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      font-size:42px;
+      box-shadow:0 0 35px rgba(34,158,217,.6);
     }
 
-    /* Sharp inner glow & animation */
-    .neon-btn::before {
-      content: "";
-      position: absolute;
-      top: -2px;
-      left: -2px;
-      right: -2px;
-      bottom: -2px;
-      background: linear-gradient(90deg, #00e5ff, #ff00ff, #00e5ff);
-      z-index: -1;
-      filter: blur(8px);
-      opacity: 0.9;
-      animation: neonFlow 3s linear infinite;
-      border-radius: 12px;
+    h1{
+      margin:20px 0 10px;
+      font-size:30px;
+      font-weight:700;
     }
 
-    @keyframes neonFlow {
-      0% { filter: hue-rotate(0deg); }
-      100% { filter: hue-rotate(360deg); }
+    p{
+      color:#cbd5e1;
+      line-height:1.6;
+      font-size:15px;
+      margin-bottom:28px;
     }
 
-    .neon-btn:hover {
-      transform: scale(1.08);
-      box-shadow: 0 0 25px cyan, 0 0 50px magenta;
-      color: #fff;
+    .btn{
+      display:block;
+      width:100%;
+      padding:16px;
+      text-decoration:none;
+      border-radius:14px;
+      background:linear-gradient(135deg,#229ED9,#0088cc);
+      color:#fff;
+      font-size:17px;
+      font-weight:600;
+      transition:.3s;
+      box-shadow:0 12px 35px rgba(34,158,217,.45);
     }
 
-    /* Glow pulse while idle */
-    @keyframes pulse {
-      0%, 100% { box-shadow: 0 0 15px cyan, 0 0 30px magenta; }
-      50% { box-shadow: 0 0 25px magenta, 0 0 40px cyan; }
-    }
-    .neon-btn {
-      animation: pulse 3s infinite;
+    .btn:hover{
+      transform:translateY(-3px);
+      box-shadow:0 18px 45px rgba(34,158,217,.65);
     }
 
-    /* Footer */
-    .footer {
-      margin-top: 50px;
-      font-size: 15px;
-      color: #ccc;
-      text-shadow: 0 0 10px cyan;
-    }
-
-    .footer span {
-      color: #ff006e;
-      animation: heartbeat 1.5s infinite;
-    }
-
-    @keyframes heartbeat {
-      0%, 20%, 40%, 60%, 80%, 100% { transform: scale(1); }
-      30%, 50%, 70% { transform: scale(1.3); }
-    }
-
-    /* Responsive */
-    @media (min-width: 700px) {
-      .button-grid {
-        grid-template-columns: 1fr 1fr;
-        gap: 20px;
-      }
+    .footer{
+      margin-top:24px;
+      color:#94a3b8;
+      font-size:13px;
     }
   </style>
-</head>
-<body>
-  <div class="glow-bg"></div>
 
-  <div class="container">
-    <h2>⚡ Choose Your Portal</h2>
+  <div class="bg"></div>
 
-    <div class="button-grid">
-      <button class="neon-btn" onclick="window.open('http://spidyuniverserwa.vercel.app','_blank')">RWA V1</button>
-      <button class="neon-btn" onclick="window.open('https://deltastudy.site/deltapiro')">RWA V2</button>
-      <button class="neon-btn" onclick="window.open('https://rojgarwithankitt.vercel.app','_blank')">RWA V3</button>
-    </div>
+  <div class="card">
+      <div class="logo">✈️</div>
+
+      <h1>AZ Mods Adda</h1>
+
+      <p>
+        Join our official Telegram channel to get the latest Mod APKs,
+        Premium Apps, Updates and Exclusive Releases.
+      </p>
+
+      <a class="btn"
+         href="https://t.me/az_mods_adda"
+         target="_blank">
+         🚀 Join Telegram Channel
+      </a>
+
+      <div class="footer">
+        Official Community • Fast Updates • Trusted Source
+      </div>
   </div>
 
-  <div class="footer">
-    Share If You <span>❤️</span> by <b>Our Work 😊</b>
-  </div>
 </body>
-</html>
